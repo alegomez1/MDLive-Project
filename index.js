@@ -7,9 +7,10 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Put all API endpoints under '/api'
-app.get('/apps', (req, res) => {
-    res.send('HELLO')
-});
+app.use('/apps', require('./routes'))
+// app.get('/apps', (req, res) => {
+//     res.send('HELLO')
+// });
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.asdfasdfasdfasf
 app.get('*', (req, res) => {
