@@ -1,20 +1,16 @@
 {
-  "name": "mern-boilerplate",
-  "version": "2.0.0",
-  "private": true,
+  "name": "final",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "preinstall": "echo --- preinstall --- && cd server && npm install && cd ../client && npm install && npm run build && cd ..",
-    "start": "echo --- start --- && cd server && npm start",
-    "dev:server": "cd server && npm run dev",
-    "dev:client": "cd client && npm run start"
+    "start": "node index.js",
+  "heroku-postbuild": "cd client && npm install && npm run build"
   },
-  "engines": {
-    "node": "8.9.4"
-  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "cloudinary": "^1.15.0",
-    "google-maps-react": "^2.0.2",
-    "nodemailer": "^6.3.1",
-    "react-responsive-carousel": "^3.1.50"
+    "express": "^4.17.1"
   }
 }
