@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-let list = require('./list.json/')
+let list = require('./list.json')
 
 //Route to get all items
 router.get('/', (req,res,next)=>{
