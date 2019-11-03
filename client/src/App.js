@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
 import './App.css';
+import axios from 'axios'
+import Posts from './Posts';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          HELLO EVERYONE <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+let url = 'http://localhost:5000'
+// let url = 'https://mdlive-project.herokuapp.com'
+
+class App extends Component {
+  constructor(props){
+    super(props)
+  this.state={
+    startID: '',
+    maxID: '',
+    currentPage: 1,
+    postsPerPage: 5,
+    items: []
+  }
+  this.handleInputChange = this.handleInputChange.bind(this)
 }
 
-export default App;
+  searchByID = () =>{
+    console.log('search func')
+    axios.get(`${url}/apps/range=by=id_start=${this.state.startID}&max=${this.state.maxID}`)
+    .then(response=>{
+      console.log('axios response---', response)
+      this.setState({
+        items: response.data
+      })
+      console.log('new state---', this.state)
+    })
+  }
+
+  handleInputChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    })
+  }
+  
+
+
+  render () {
+    return (
+      <div>
+        <h1 className='col-lg-12 align-center'>MDLive Project</h1>
+        <h3>How would you like to search?</h3>
+        <input type="text" value={this.state.startID} name="startID" placeholder='enter a startID' onChange={this.handleInputChange}/>
+        <input type="text" value={this.state.maxID} name="maxID" placeholder='enter a maxID' onChange={this.handleInputChange}/>
+        <button onClick={this.searchByID}>Search</button>
+
+        <Posts items={this.state.items} loading={this.state.loading}/>
+      </div>
+    );
+  }
+}
+
+export default App
