@@ -24,10 +24,10 @@ class App extends Component {
   }
   //Search by ID function
   searchByID = () => {
-    if (this.state.startID >= 1 && this.state.startID <= this.state.maxID) {
-      this.setState({
-        warningBanner: '',
-      })
+    // if (this.state.startID >= 1 && this.state.startID <= this.state.maxID) {
+    //   this.setState({
+    //     warningBanner: '',
+    //   })
       axios
         .get(
           `${url}/apps/range=by=id_start=${this.state.startID}&max=${this.state.maxID}`
@@ -39,12 +39,13 @@ class App extends Component {
           })
           console.log('new state---', this.state)
         })
-    } else {
-      this.setState({
-        warningBanner:
-          'ID numbers are not valid. Please enter values between 1-50',
-      })
-    }
+    // } 
+    // else {
+      // this.setState({
+      //   warningBanner:
+      //     'ID numbers are not valid. Please enter values between 1-50',
+      // })
+    // }
   }
   //Search by name function
   searchByName = () => {
@@ -76,21 +77,21 @@ class App extends Component {
   }
 
   //View JSON function
-  viewJSON = () => {
-    if((this.state.startID>=1 && this.state.startID<this.state.maxID) &&(this.state.maxID<=50 && this.state.maxID>this.state.startID)){
-      return(
-        <a href={`${url}/apps/range=by=id_start=${this.state.startID}&max=${this.state.maxID}`}>
-          <button>View JSON</button>
-        </a>
-      )
-    }else{
-      return(
-        <a href={`${url}/apps/`}>
-          <button>View JSON</button>
-        </a>
-      )
-    }
-  }
+  // viewJSON = () => {
+  //   if((this.state.startID>=1 && this.state.startID<this.state.maxID) &&(this.state.maxID<=50 && this.state.maxID>this.state.startID)){
+  //     return(
+  //       <a href={`${url}/apps/range=by=id_start=${this.state.startID}&max=${this.state.maxID}`}>
+  //         <button>View JSON</button>
+  //       </a>
+  //     )
+  //   }else{
+  //     return(
+  //       <a href={`${url}/apps/`}>
+  //         <button>View JSON</button>
+  //       </a>
+  //     )
+  //   }
+  // }
 
   render() {
     //Get current item
@@ -121,6 +122,9 @@ class App extends Component {
           onChange={this.handleInputChange}
         />
         <button onClick={this.searchByID}>Search</button>
+        <a href={`${url}/apps/range=by=id_start=${this.state.startID}&max=${this.state.maxID}`}>
+          <button>View JSON</button>
+        </a>
 
         <h3>Search by name</h3>
 
@@ -139,6 +143,10 @@ class App extends Component {
           onChange={this.handleInputChange}
         />
         <button onClick={this.searchByName}>Search</button>
+        <a href={`${url}/apps/range=by=name_start=${this.state.startName}&max=${this.state.maxName}`}>
+          <button>View JSON</button>
+        </a>
+        
 
         <Posts
           items={currentItems}
@@ -149,7 +157,7 @@ class App extends Component {
           itemsPerPage={this.state.postsPerPage}
           paginate={this.paginate}
         />
-        {this.viewJSON()}
+        {/* {this.viewJSON()} */}
       </div>
     )
   }
