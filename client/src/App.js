@@ -4,8 +4,8 @@ import axios from 'axios'
 import Posts from './Posts'
 import Pagination from './Pagination'
 
-let url = 'http://localhost:5000'
-// let url = 'https://mdlive-project.herokuapp.com'
+// let url = 'http://localhost:5000'
+let url = 'https://mdlive-project.herokuapp.com'
 
 class App extends Component {
   constructor(props) {
@@ -87,17 +87,18 @@ class App extends Component {
 
     return (
       <div>
+      <div className="main-container">
         <h1 className="col-lg-12 align-center">MDLive Project</h1>
         <h3>{this.state.warningBanner}</h3>
-        <h3>Search by ID</h3>
-        <input
+        <h3 className="align-center section-header">Search by ID</h3>
+        <input className="align-center" id="input-box"
           type="text"
           value={this.state.startID}
           name="startID"
           placeholder="start ID (ex: 1)"
           onChange={this.handleInputChange}
         />
-        <input
+        <input className="align-center"
           type="text"
           value={this.state.maxID}
           name="maxID"
@@ -109,16 +110,16 @@ class App extends Component {
           <button>View JSON</button>
         </a>
 
-        <h3>Search by name</h3>
+        <h3 className="align-center section-header">Search by name</h3>
 
-        <input
+        <input className="align-center"
           type="text"
           value={this.state.startName}
           name="startName"
           placeholder="start name (ex: my-app-001)"
           onChange={this.handleInputChange}
         />
-        <input
+        <input className="align-center"
           type="text"
           value={this.state.maxName}
           name="maxName"
@@ -130,7 +131,8 @@ class App extends Component {
           <button>View JSON</button>
         </a>
 
-        <Posts
+      </div>
+      <Posts
           items={currentItems}
           loading={this.state.loading}
         />
@@ -139,7 +141,7 @@ class App extends Component {
           itemsPerPage={this.state.postsPerPage}
           paginate={this.paginate}
         />
-      </div>
+        </div>
     )
   }
 }
