@@ -26,6 +26,9 @@ router.get('/', (req, res, next) => {
          if(max!=undefined){
           max = Number(max) + (Number(start) - 1)
          }
+         if(end === undefined){ //This accounts for times when no end value is passed
+           end = list.length
+         }
 
         /**
          * This for-loop goes through the list.json file based on the start and end query values
@@ -34,6 +37,7 @@ router.get('/', (req, res, next) => {
          */
 
         for (let i = start - 1; i < end; i++) {
+          console.log('empty end----', end)
             if(max!=undefined){
             if (i < max) {
               appArray.push(list[i])
@@ -60,6 +64,10 @@ router.get('/', (req, res, next) => {
 
         let start2 = 0
         let end2 = 0
+
+        if(end === undefined){ //This accounts for times when no end value is passed
+          end = 'my-app-050'
+        }
         /**
          * This for-loop finds the IDs of the start and end app names
          * These IDs are then assigned to the start2 and end2 variables whcih are used in the next loop
