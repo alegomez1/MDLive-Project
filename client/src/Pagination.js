@@ -19,6 +19,7 @@ class Pagination  extends Component {
             </li>
           ))}
         </ul>
+
       </nav>
     )
   }

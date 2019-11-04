@@ -9,7 +9,9 @@ class Posts extends Component {
   return <ul className="list-group mb-4">
     {this.props.items.map(item=>(
       <li key={item.id} className="list-group-item">
+
         {item.name}
+        <p>ID: {item.id}</p>
       </li>
     ))}
   </ul>
