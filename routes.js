@@ -22,7 +22,10 @@ router.get('/', (req, res, next) => {
     switch (rangeBy) {
       //If rangeBy = id
       case 'id':
-        max = Number(max) + (Number(start) - 1) //This accounts for when the value of max is less than the value of start
+         //This accounts for when the value of max is less than the value of start
+         if(max!=undefined){
+          max = Number(max) + (Number(start) - 1)
+         }
 
         /**
          * This for-loop goes through the list.json file based on the start and end query values
@@ -31,16 +34,18 @@ router.get('/', (req, res, next) => {
          */
 
         for (let i = start - 1; i < end; i++) {
-          if (max != undefined) {
+            if(max!=undefined){
             if (i < max) {
               appArray.push(list[i])
             } else {
               i++
             }
-          } else {
+          }
+          else{
             appArray.push(list[i])
           }
-        }
+          }
+        
         //Depending on the order query value, it will res.json the appArray regularly, or reversed
         if (order === 'asc') {
           res.json(appArray)
@@ -52,7 +57,6 @@ router.get('/', (req, res, next) => {
         break
       //If rangeBy = name
       case 'name':
-        max = Number(max) + (Number(start) - 1) //This accounts for when the value of max is less than the value of start
 
         let start2 = 0
         let end2 = 0
@@ -69,6 +73,10 @@ router.get('/', (req, res, next) => {
         }
         //This if statement checks to make sure these variables have an actual value
         if (start2 != 0 && end2 != 0) {
+
+          if(max!=undefined){ //This accounts for when the value of max is less than the value of start2
+            max = Number(max) + (Number(start2) - 1)
+           }
           /**
            * This for-loop goes through the list.json file based on the start and end query values
            * If i is less than the max query value indicated, it adds it to the appArray variable, other wise it just iterates i
@@ -76,7 +84,7 @@ router.get('/', (req, res, next) => {
            */
           for (let i = start2 - 1; i < end2; i++) {
             if (max != undefined) {
-              if (i <= max) {
+              if (i < max) {
                 appArray.push(list[i])
               } else {
                 i++
