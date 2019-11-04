@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-
+/**
+ * The Pagination component is used to return a nav full of <a> tags
+ * These tags have a number inside them and when clicked will navigate to that page, showing a different list of items
+ */
 class Pagination  extends Component {
   render () {
 
@@ -19,7 +22,6 @@ class Pagination  extends Component {
             </li>
           ))}
         </ul>
-
       </nav>
     )
   }

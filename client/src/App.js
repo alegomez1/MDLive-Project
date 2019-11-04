@@ -4,33 +4,41 @@ import axios from 'axios'
 import Posts from './Posts'
 import Pagination from './Pagination'
 
-// let url = 'http://localhost:5000'
-let url = 'https://mdlive-project.herokuapp.com'
-
+let url = 'http://localhost:5000'
+// let url = 'https://mdlive-project.herokuapp.com'
+/**
+ * This is the basic App class component
+ * It's where all the state values are declared and the handleInputChange function is binded
+ */
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      startID: '',
-      maxID: '',
+      start: '',
+      end: '',
       startName: '',
       maxName: '',
       currentPage: 1,
-      postsPerPage: 5,
+      postsPerPage: 5, //Change this value to see more posts per page. 5 is a good choice because it doesn't require scrolling down to see everything
       items: [],
       warningBanner: '',
     }
     this.handleInputChange = this.handleInputChange.bind(this)
   }
-  //Search by ID function
+  /**
+   * Search By ID Function
+   * This function runs whenever the search button next to the ID input boxes is clicked
+   * It makes an axios call to the server using the params: {rangeby: id, start: this.state.start, end: this.state.end}
+   * The state values for start and end are written by the user
+   */
   searchByID = () => {
-    // if (this.state.startID >= 1 && this.state.startID <= this.state.maxID) {
+    // if (this.state.start >= 1 && this.state.start <= this.state.end) {
     //   this.setState({
     //     warningBanner: '',
     //   })
       axios
         .get(
-          `${url}/apps?rangeBy=id&startID=${this.state.startID}&maxID=${this.state.maxID}`
+          `${url}/apps?rangeBy=id&start=${this.state.start}&end=${this.state.end}`
         )
         .then(response => {
           console.log('axios response---', response)
@@ -47,11 +55,16 @@ class App extends Component {
       // })
     // }
   }
-  //Search by name function
+ /**
+  * Search By Name Function
+   * This function runs whenever the search button next to the name input boxes is clicked
+   * It makes an axios call to the server using the params: {rangeby: name, startName: this.state.startName, maxName: this.state.maxName}
+   * The state values for startName and maxName are written by the user
+  */
   searchByName = () => {
     axios
       .get(
-        `${url}/apps?rangeBy=name&startName=${this.state.startName}&maxName=${this.state.maxName}`
+        `${url}/apps?rangeBy=name&start=${this.state.startName}&end=${this.state.maxName}`
       )
       .then(response => {
         console.log('axios response---', response)
@@ -61,15 +74,22 @@ class App extends Component {
         console.log('new state---', this.state)
       })
   }
-
+/**
+ * handleInputChange(event) function
+ * This function runs whenever the user types into the input boxes
+ * It then sets the state for those values according to what the user typed in
+ */
   handleInputChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     })
-    console.log('current state----', this.state)
   }
 
-  //Change page
+/**
+ * Paginate function
+ * This function is passed as a prop to the Paginate component
+ * It's purpose is to change the current page number according what number is clicked when all the pages are generated
+ */
   paginate = pageNumber => {
     this.setState({
       currentPage: pageNumber,
@@ -77,7 +97,10 @@ class App extends Component {
   }
 
   render() {
-    //Get current item
+    /**
+     * This logic is used to get what the current items are
+     * It's then passed into the Posts component as a prop
+     */
     const indexOfLastItem = this.state.currentPage * this.state.postsPerPage
     const indexOfFirstItem = indexOfLastItem - this.state.postsPerPage
     const currentItems = this.state.items.slice(
@@ -93,20 +116,20 @@ class App extends Component {
         <h3 className="align-center section-header">Search by ID</h3>
         <input className="align-center" id="input-box"
           type="text"
-          value={this.state.startID}
-          name="startID"
+          value={this.state.start}
+          name="start"
           placeholder="start ID (ex: 1)"
           onChange={this.handleInputChange}
         />
         <input className="align-center"
           type="text"
-          value={this.state.maxID}
-          name="maxID"
+          value={this.state.end}
+          name="end"
           placeholder="max ID (ex: 50)"
           onChange={this.handleInputChange}
         />
         <button onClick={this.searchByID}>Search</button>
-        <a href={`${url}/apps?rangeBy=id&startID=${this.state.startID}&maxID=${this.state.maxID}`}>
+        <a href={`${url}/apps?rangeBy=id&start=${this.state.start}&end=${this.state.end}`}>
           <button>View JSON</button>
         </a>
 
@@ -127,7 +150,7 @@ class App extends Component {
           onChange={this.handleInputChange}
         />
         <button onClick={this.searchByName}>Search</button>
-        <a href={`${url}/apps?rangeBy=name&startName=${this.state.startName}&maxName=${this.state.maxName}`}>
+        <a href={`${url}/apps?rangeBy=name&start=${this.state.startName}&end=${this.state.maxName}`}>
           <button>View JSON</button>
         </a>
 
