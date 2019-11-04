@@ -30,7 +30,7 @@ class App extends Component {
     //   })
       axios
         .get(
-          `${url}/apps/range=by=id_start=${this.state.startID}&max=${this.state.maxID}`
+          `${url}/apps?rangeBy=id&startID=${this.state.startID}&maxID=${this.state.maxID}`
         )
         .then(response => {
           console.log('axios response---', response)
@@ -51,7 +51,7 @@ class App extends Component {
   searchByName = () => {
     axios
       .get(
-        `${url}/apps/range=by=name_start=${this.state.startName}&max=${this.state.maxName}`
+        `${url}/apps?rangeBy=name&startName=${this.state.startName}&maxName=${this.state.maxName}`
       )
       .then(response => {
         console.log('axios response---', response)
@@ -75,23 +75,6 @@ class App extends Component {
       currentPage: pageNumber,
     })
   }
-
-  //View JSON function
-  // viewJSON = () => {
-  //   if((this.state.startID>=1 && this.state.startID<this.state.maxID) &&(this.state.maxID<=50 && this.state.maxID>this.state.startID)){
-  //     return(
-  //       <a href={`${url}/apps/range=by=id_start=${this.state.startID}&max=${this.state.maxID}`}>
-  //         <button>View JSON</button>
-  //       </a>
-  //     )
-  //   }else{
-  //     return(
-  //       <a href={`${url}/apps/`}>
-  //         <button>View JSON</button>
-  //       </a>
-  //     )
-  //   }
-  // }
 
   render() {
     //Get current item
@@ -122,7 +105,7 @@ class App extends Component {
           onChange={this.handleInputChange}
         />
         <button onClick={this.searchByID}>Search</button>
-        <a href={`${url}/apps/range=by=id_start=${this.state.startID}&max=${this.state.maxID}`}>
+        <a href={`${url}/apps?rangeBy=id&startID=${this.state.startID}&maxID=${this.state.maxID}`}>
           <button>View JSON</button>
         </a>
 
@@ -143,10 +126,9 @@ class App extends Component {
           onChange={this.handleInputChange}
         />
         <button onClick={this.searchByName}>Search</button>
-        <a href={`${url}/apps/range=by=name_start=${this.state.startName}&max=${this.state.maxName}`}>
+        <a href={`${url}/apps?rangeBy=name&startName=${this.state.startName}&maxName=${this.state.maxName}`}>
           <button>View JSON</button>
         </a>
-        
 
         <Posts
           items={currentItems}
@@ -157,7 +139,6 @@ class App extends Component {
           itemsPerPage={this.state.postsPerPage}
           paginate={this.paginate}
         />
-        {/* {this.viewJSON()} */}
       </div>
     )
   }
