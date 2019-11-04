@@ -4,8 +4,8 @@ import axios from 'axios'
 import Posts from './Posts'
 import Pagination from './Pagination'
 
-let url = 'http://localhost:5000'
-// let url = 'https://mdlive-project.herokuapp.com'
+// let url = 'http://localhost:5000'
+let url = 'https://mdlive-project.herokuapp.com'
 /**
  * This is the basic App class component
  * It's where all the state values are declared and the handleInputChange function is binded

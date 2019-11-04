@@ -23,6 +23,11 @@ router.get('/', (req, res, next) => {
   switch (rangeBy) {
     //If rangeBy = id
     case 'id':
+      /**
+       * This for-loop goes through the list.json file based on the start and end query values
+       * If i is less than the max query value indicated, it adds it to the appArray variable, other wise it just iterates i
+       * If there is no max query value, it adds the items from the start to end values of the list.json
+       */
       for (let i = start - 1; i < end; i++) {
         if(max!=undefined){
           if(i<max){
@@ -34,6 +39,7 @@ router.get('/', (req, res, next) => {
           appArray.push(list[i])
         }
       }
+      //Depending on the order query value, it will res.json the appArray regularly, or reversed
       if(order === 'asc'){
       res.json(appArray)
     }else if(order === 'desc'){
@@ -46,7 +52,10 @@ router.get('/', (req, res, next) => {
     case 'name':
       let start2 = 0
       let end2 = 0
-
+      /**
+       * This for-loop finds the IDs of the start and end app names
+       * These IDs are then assigned to the start2 and end2 variables whcih are used in the next loop
+       */
       for (let i = 0; i < list.length; i++) {
         if (list[i].name === start) {
           start2 = list[i].id
@@ -54,8 +63,13 @@ router.get('/', (req, res, next) => {
           end2 = list[i].id
         }
       }
+      //This if statement checks to make sure these variables have an actual value
       if (start2 != 0 && end2 != 0) {
-
+      /**
+       * This for-loop goes through the list.json file based on the start and end query values
+       * If i is less than the max query value indicated, it adds it to the appArray variable, other wise it just iterates i
+       * If there is no max query value, it adds the items from the start to end values of the list.json
+       */
         for (let i = start2 - 1; i < end2; i++) {
           if(max!=undefined){
             if(i<max){
@@ -67,6 +81,7 @@ router.get('/', (req, res, next) => {
             appArray.push(list[i])
           }
         }
+      //Depending on the order query value, it will res.json the appArray regularly, or reversed
         if(order === 'asc'){
           res.json(appArray)
         }else if(order === 'desc'){
@@ -85,39 +100,4 @@ router.get('/', (req, res, next) => {
 }
 })
 
-
-
-
-// //Route to search by ID with start and max IDs
-// router.get('/range=by=id_start=:startID&max=:maxID', (req, res, next) => {
-//   let appArray = []
-
-//   for (let i = req.params.startID - 1; i < req.params.maxID; i++) {
-//     appArray.push(list[i])
-//   }
-//   res.json(appArray)
-// })
-
-// //Route to search by name with start and max names
-// router.get('/range=by=name_start=:startName&max=:maxName', (req, res, next) => {
-//   let startID = 0
-//   let maxID = 0
-//   let appArray = []
-
-//   for (let i = 0; i < list.length; i++) {
-//     if (list[i].name === req.params.startName) {
-//       startID = list[i].id
-//       // console.log('start ID', startID)
-//     } else if (list[i].name === req.params.maxName) {
-//       maxID = list[i].id
-//       // console.log('max ID', maxID)
-//     }
-//   }
-//   if (startID != 0 && maxID != 0) {
-//     for (let i = startID - 1; i < maxID; i++) {
-//       appArray.push(list[i])
-//     }
-//   }
-//   res.json(appArray)
-// })
 module.exports = router
