@@ -30,7 +30,7 @@ router.get('/', (req, res, next) => {
        */
       for (let i = start - 1; i < end; i++) {
         if(max!=undefined){
-          if(i<=max){
+          if(i<max){
             appArray.push(list[i])
           } else{
             i++
