@@ -26,6 +26,12 @@ router.get('/', (req, res, next) => {
          if(max!=undefined){
           max = Number(max) + (Number(start) - 1)
          }
+         if(Number(end)>50){ //If end query is greater than 50 it sets end equal to 50
+           end = 50
+         }
+         if(end === undefined){ //This accounts for times when no end value is passed
+           end = list.length
+         }
 
         /**
          * This for-loop goes through the list.json file based on the start and end query values
@@ -34,12 +40,14 @@ router.get('/', (req, res, next) => {
          */
 
         for (let i = start - 1; i < end; i++) {
+          
             if(max!=undefined){
             if (i < max) {
               appArray.push(list[i])
             } else {
               i++
             }
+
           }
           else{
             appArray.push(list[i])
@@ -60,6 +68,10 @@ router.get('/', (req, res, next) => {
 
         let start2 = 0
         let end2 = 0
+
+        if(end === undefined){ //This accounts for times when no end value is passed
+          end = 'my-app-050'
+        }
         /**
          * This for-loop finds the IDs of the start and end app names
          * These IDs are then assigned to the start2 and end2 variables whcih are used in the next loop
@@ -69,10 +81,15 @@ router.get('/', (req, res, next) => {
             start2 = list[i].id
           } else if (list[i].name === end) {
             end2 = list[i].id
+              break
+          }
+         else if(i===49){
+            end2 = 50
           }
         }
         //This if statement checks to make sure these variables have an actual value
         if (start2 != 0 && end2 != 0) {
+
 
           if(max!=undefined){ //This accounts for when the value of max is less than the value of start2
             max = Number(max) + (Number(start2) - 1)
