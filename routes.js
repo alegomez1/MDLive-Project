@@ -22,8 +22,11 @@ router.get('/', (req, res, next) => {
     switch (rangeBy) {
       //If rangeBy = id
       case 'id':
-         //This accounts for when the value of max is less than the value of start
-         if(max!=undefined){
+
+          if(start === undefined){ //Accounts for when no start value is passed
+            start = 1
+          }
+         if(max!=undefined){ //This accounts for when the value of max is less than the value of start
           max = Number(max) + (Number(start) - 1)
          }
          if(Number(end)>50){ //If end query is greater than 50 it sets end equal to 50
@@ -32,6 +35,7 @@ router.get('/', (req, res, next) => {
          if(end === undefined){ //This accounts for times when no end value is passed
            end = list.length
          }
+      
 
         /**
          * This for-loop goes through the list.json file based on the start and end query values
@@ -69,7 +73,10 @@ router.get('/', (req, res, next) => {
         let start2 = 0
         let end2 = 0
 
-        if(end === undefined){ //This accounts for times when no end value is passed
+        if(start === undefined){ //This accounts for when no start value is passed
+          start = 'my-app-001'
+        }
+        if(end === undefined){ //This accounts for when no end value is passed
           end = 'my-app-050'
         }
         /**
