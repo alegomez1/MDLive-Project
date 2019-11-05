@@ -30,7 +30,7 @@ For more details on the code and logic used, please refer to the comments and do
 *   Use ```npm install``` or ```yarn install``` to install the necessary dependencies
 *   Run the server using ```cd server``` followed by ```npm start``` or ```yarn start```
 *   Run the optional client frontend using ```cd client``` followed by ```npm start``` or ```yarn start```
-*   Open ```http://localhost:5000``` in your browser for the server and/or ```http://localhost:3000```
+*   Open ```http://localhost:5000``` in your browser for the server and/or ```http://localhost:3000``` for frontend site
 
 ## Endpoints <a name="endpoints"></a>
 
