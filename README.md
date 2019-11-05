@@ -4,9 +4,10 @@
 - [About](#about)
 - [Setup](#setup)
 - [Endpoints](#endpoints)
+- [Testing](#testing)
 - [Author](#author)
 
-## About <a name = "about"></a>
+## About <a name="about"></a>
 
 This project was done as part of MDLive’s QA Challenge. My solution was to use a Node.js Express server that would be the endpoint for all queries. I made an optional frontend search interface with pagination using React.js. The frontend was created so there would be a visual aspect to the project, with the option of viewing the JSON data.
 
@@ -21,7 +22,7 @@ There’s added logic to see if a max items query is passed, as well as whether 
 
 For more details on the code and logic used, please refer to the comments and documentation inside of the code.
 
-## Setup <a name = "setup"></a>
+## Setup <a name="setup"></a>
 
 ### Installation
 
@@ -31,7 +32,7 @@ For more details on the code and logic used, please refer to the comments and do
 *   Run the optional client frontend using ```cd client``` followed by ```npm start``` or ```yarn start```
 *   Open ```http://localhost:5000``` in your browser for the server and/or ```http://localhost:3000```
 
-## Endpoints <a name = "endpoints"></a>
+## Endpoints <a name="endpoints"></a>
 
 | Queries |
 | --- |
@@ -45,6 +46,19 @@ For more details on the code and logic used, please refer to the comments and do
 
 #### Basic Frontend Interace
  https://mdlive-project.herokuapp.com
+ 
+ ## Testing <a name="testing"></a>
+ 
+Automatic testing is done using [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/)
+- After cloning the repo and runing ```npm install``` run ```npm test```
 
-## Author <a name = "author"></a>
+## Created using:
+* [React.js](https://reactjs.org/) - Frontend design
+* [Javascript](https://www.javascript.com/) - Frontend and backend
+* [Express.js](https://expressjs.com/) - Backend server
+* [Mocha](https://mochajs.org/) - Testing
+* [Chai](https://www.chaijs.com/) - Testing
+
+
+## Created by: <a name="author"></a>
 * [Alejandro Gomez](https://github.com/alegomez1)
