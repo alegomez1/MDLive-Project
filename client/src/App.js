@@ -118,17 +118,17 @@ class App extends Component {
           type="text"
           value={this.state.start}
           name="start"
-          placeholder="start ID (ex: 1)"
+          placeholder="1-50"
           onChange={this.handleInputChange}
         />
         <input className="align-center"
           type="text"
           value={this.state.end}
           name="end"
-          placeholder="max ID (ex: 50)"
+          placeholder="1-50"
           onChange={this.handleInputChange}
         />
-        <button onClick={this.searchByID}>Search</button>
+        <button onClick={this.searchByID}>Search IDs</button>
         <a href={`${url}/apps?rangeBy=id&start=${this.state.start}&end=${this.state.end}`}>
           <button>View JSON</button>
         </a>
@@ -139,17 +139,17 @@ class App extends Component {
           type="text"
           value={this.state.startName}
           name="startName"
-          placeholder="start name (ex: my-app-001)"
+          placeholder="my-app-001"
           onChange={this.handleInputChange}
         />
         <input className="align-center"
           type="text"
           value={this.state.maxName}
           name="maxName"
-          placeholder="start name (ex: my-app-050)"
+          placeholder="my-app-050"
           onChange={this.handleInputChange}
         />
-        <button onClick={this.searchByName}>Search</button>
+        <button onClick={this.searchByName}>Search Names</button>
         <a href={`${url}/apps?rangeBy=name&start=${this.state.startName}&end=${this.state.maxName}`}>
           <button>View JSON</button>
         </a>
