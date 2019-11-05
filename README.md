@@ -7,6 +7,10 @@
 - [Testing](#testing)
 - [Author](#author)
 
+![](IDSearchGif.gif)
+<br>
+Demo of frontend interface
+
 ## About <a name="about"></a>
 
 This project was done as part of MDLive’s QA Challenge. My solution was to use a Node.js Express server that would be the endpoint for all queries. I made an optional frontend search interface with pagination using React.js. The frontend was created so there would be a visual aspect to the project, with the option of viewing the JSON data.
