@@ -9,7 +9,7 @@
 
 ![](IDSearchGif.gif)
 <br>
-Demo of frontend interface
+Demo of the frontend interface
 
 ## About <a name="about"></a>
 
@@ -55,7 +55,7 @@ For more details on the code and logic used, please refer to the comments and do
  ## Testing <a name="testing"></a>
  
 Automatic testing is done using [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/)
-- After cloning the repo and runing ```npm install``` run ```npm test```
+- After cloning the repo, run ```npm install```and then ```npm test```
 
 ## Created using:
 * [React.js](https://reactjs.org/) - Frontend design
