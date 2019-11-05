@@ -9,23 +9,31 @@
 
 ![](IDSearchGif.gif)
 <br>
-Demo of the frontend interface
+Demo of the frontend interface -  https://mdlive-project.herokuapp.com
 
 ## About <a name="about"></a>
 
-This project was done as part of MDLive’s QA Challenge. My solution was to use a Node.js Express server that would be the endpoint for all queries. I made an optional frontend search interface with pagination using React.js. The frontend was created so there would be a visual aspect to the project, with the option of viewing the JSON data.
+### Process
 
-The endpoints for the server are meant to return JSON data depending on the parameters passed to it, and what queries they contain. For example, if a user wants to see all available data items, they can navigate to /apps. If more specificity is needed, parameters can be passed in the URL. These parameters were sorted in the following manner:
+1. Create a backend server using Express and Node.js. This would be the endpoint for all queries.
+2. Provided seed data in the form of a list.json file.
+3. Added the necesessary /apps? routes to the server, and added manual pagination.
+4. Queries were sorted in the following manner:
 
-- Check to see if rangeBy is set to id or name
-- Run if statements to check for cases when certain queries are undefined or greater than the permitted values
-- Run a switch statement, with the cases being id or name
-- Narrow the items being searched for by start and end values
-- Add those items to a new array which is displayed in JSON format
-
-There’s added logic to see if a max items query is passed, as well as whether the user wants the info in ascending or descending order. 
-
-For more details on the code and logic used, please refer to the comments and documentation inside of the code.
+   - Check to see if rangeBy is set to id or name
+   - Run if statements to check for edge cases when certain queries are undefined or greater than the permitted values
+   - Run a switch statement, whose paramater was the rangeBy value
+   - Narrow the items being searched for by their start and end values
+   - Add those items to a new array which is displayed in JSON format
+   - If the order was set to ascending(asc) the array was returned normally, otherwise it was returned reversed for     
+     descending(desc) order
+     
+5. Create a frontend interface using [React.js](https://reactjs.org/) to showcase clientside pagination. 
+6. Deploy to Heroku once both frontend and backend were properly integrated.
+7. Create automatic testing using [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/) to test endpoints for the app, as well as different queries being 
+   passed through
+   
+#### For more details on the code and logic used, please refer to the comments and documentation inside of the code.*
 
 ## Setup <a name="setup"></a>
 
@@ -56,6 +64,8 @@ For more details on the code and logic used, please refer to the comments and do
  
 Automatic testing is done using [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/)
 - After cloning the repo, run ```npm install```and then ```npm test```
+- This series of tests account for different range options, whether or not certain queries are passed, etc.
+- There are also edge cases when values are entered that are outside the scope of the data set.
 
 ## Created using:
 * [React.js](https://reactjs.org/) - Frontend design
