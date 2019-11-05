@@ -14,6 +14,7 @@ This project was done as part of MDLive’s QA Challenge. My solution was to use
 The endpoints for the server are meant to return JSON data depending on the parameters passed to it, and what queries they contain. For example, if a user wants to see all available data items, they can navigate to /apps. If more specificity is needed, parameters can be passed in the URL. These parameters were sorted in the following manner:
 
 - Check to see if rangeBy is set to id or name
+- Run if statements to check for cases when certain queries are undefined or greater than the permitted values
 - Run a switch statement, with the cases being id or name
 - Narrow the items being searched for by start and end values
 - Add those items to a new array which is displayed in JSON format
